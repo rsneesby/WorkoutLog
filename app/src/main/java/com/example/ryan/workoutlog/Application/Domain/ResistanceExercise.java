@@ -21,4 +21,7 @@ public class ResistanceExercise extends Exercise {
     public ResistanceExercise(){
         this(0, new Date(), 0, null, null, 0, 0);
     }
+    public void setWeight(Double weight){
+        this.weight = weight;
+    }
 }

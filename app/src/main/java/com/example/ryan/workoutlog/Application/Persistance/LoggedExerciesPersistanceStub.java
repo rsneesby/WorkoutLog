@@ -1,16 +1,17 @@
 package com.example.ryan.workoutlog.Application.Persistance;
 import com.example.ryan.workoutlog.Application.Domain.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 public class LoggedExerciesPersistanceStub {
-    private List<Exercise> Exercises;
+    private ArrayList<Exercise> Exercises; //private to avoid outside editing
 
     // Takes in any list of exercises
-    public LoggedExerciesPersistanceStub(List<Exercise> theList) {
+    public LoggedExerciesPersistanceStub(ArrayList<Exercise> theList) {
         this.Exercises = theList;
     }
 
@@ -54,7 +55,9 @@ public class LoggedExerciesPersistanceStub {
 
     // Get a list of all exercises
     public List<Exercise> getExercises() {
-        return Collections.unmodifiableList(Exercises);
+        //give the caller a view only list
+        return Collections.unmodifiableList(this.Exercises);
+
     }
 
     // Add Exercise to list
@@ -85,4 +88,5 @@ public class LoggedExerciesPersistanceStub {
         return false;
 
     }
+
 }

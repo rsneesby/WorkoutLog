@@ -17,6 +17,6 @@ public class ExerciseLoggingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_logging2);
         this.exerciseLog = new ExerciseLoggingLogic();
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,exerciseLog.getExercises());
+        //ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,exerciseLog.getExercises());
     }
 }
