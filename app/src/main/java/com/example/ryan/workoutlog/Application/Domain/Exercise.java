@@ -36,6 +36,12 @@ public class Exercise implements ExerciseInterface{
     public int getId(){
         return this.id;
     }
+    public void setDate(Date date){
+        this.dayCompleted = date;
+    }
+    public void setComment(String comment){
+        this.comment = comment;
+    }
     public Exercise(){
         this(0, new Date(), 0, null, null);
     }

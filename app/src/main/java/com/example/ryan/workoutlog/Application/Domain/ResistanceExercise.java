@@ -24,4 +24,7 @@ public class ResistanceExercise extends Exercise {
     public void setWeight(Double weight){
         this.weight = weight;
     }
+    public void setReps(int reps){
+        this.reps = reps;
+    }
 }

@@ -1,18 +1,20 @@
 package com.example.ryan.workoutlog.Application;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
 import com.example.ryan.workoutlog.Application.Presentation.DisplayMessageActivity;
 import com.example.ryan.workoutlog.Application.Presentation.ExerciseLoggingActivity;
 import com.example.ryan.workoutlog.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    LoggedExerciesPersistanceStub stub = new LoggedExerciesPersistanceStub();
     public static void main(String[] args)
     {
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupViews();
     }
 
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public void openExerciseLogging(View view){
         Intent intent = new Intent(this, ExerciseLoggingActivity.class);
         Button loggingButton = (Button) findViewById(R.id.exerciseLogging);
+        intent.putExtra("Stub", (Parcelable) stub);
         startActivity(intent);
     }
     private void setupViews(){
