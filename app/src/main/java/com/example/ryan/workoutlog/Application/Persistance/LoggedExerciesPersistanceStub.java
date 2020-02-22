@@ -1,13 +1,15 @@
 package com.example.ryan.workoutlog.Application.Persistance;
 import com.example.ryan.workoutlog.Application.Domain.*;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 
-public class LoggedExerciesPersistanceStub {
+public class LoggedExerciesPersistanceStub implements Serializable {
     private ArrayList<Exercise> Exercises; //private to avoid outside editing
 
     // Takes in any list of exercises
@@ -15,44 +17,52 @@ public class LoggedExerciesPersistanceStub {
         this.Exercises = theList;
     }
 
+
     // Creates an empty list if none provided
     public LoggedExerciesPersistanceStub() {
+
         this.Exercises = new ArrayList<>();
         // 10km run sample
-        Exercises.add(new CardioExercise( new Date(2018, 7, 20),
-                60*60,
+        //double duration, String name, String comment, double distance
+        Exercises.add(new CardioExercise(
+                9,
+                60,
                 "10km Run",
                 "First attempt at 10km run",
                 10000));
 
-        Exercises.add(new CardioExercise( new Date(2018, 7, 30),
+        Exercises.add(new CardioExercise(
+                7,
                 3,
                 "Sprints",
                 "First attempt at our sprint. That was easy! :)",
                 20));
 
 
-        Exercises.add(new ResistanceExercise( new Date(2018, 7, 20),
+        Exercises.add(new ResistanceExercise(0,
                 1,
                 "Squats",
                 "Learning to Squat",
                 300,
-                10));
-        Exercises.add(new ResistanceExercise( new Date(2018, 7, 25),
+                10,3));
+        Exercises.add(new ResistanceExercise(1,
                 1,
                 "Squats",
                 "Learning to Squat",
                 300,
-                20));
-        Exercises.add(new ResistanceExercise( new Date(2018, 7, 27),
+                20,3));
+        Exercises.add(new ResistanceExercise(2,
                 2,
                 "Squats",
                 "Learning to Squat",
                 100,
-                5));
+                5,3));
 
     }
-
+    //size
+    public int getSize(){
+        return this.Exercises.size();
+    }
     // Get a list of all exercises
     public List<Exercise> getExercises() {
         //give the caller a view only list
@@ -64,14 +74,17 @@ public class LoggedExerciesPersistanceStub {
     public boolean insertExercise(Exercise newExercise) {
         return Exercises.add(newExercise);
     }
-
+    public Exercise getPosition(int position){
+        return Exercises.get(position);
+    }
     // Update the exercise
     public boolean updateExercise(Exercise revisedExercise) {
-        int index = Exercises.indexOf(revisedExercise);
-        if (index >= 0)
-        {
-            Exercises.set(index, revisedExercise);
-            return true;
+        for (int i = 0; i <Exercises.size() ; i++) {
+            if(Exercises.get(i).getId() == revisedExercise.getId()){
+                Exercises.set(i,revisedExercise);
+
+                break;
+            }
         }
         return false;
 
@@ -79,12 +92,12 @@ public class LoggedExerciesPersistanceStub {
 
     // Delete our exercise from the list
     public boolean deleteExercise(Exercise revisedExercise) {
-        int index = Exercises.indexOf(revisedExercise);
-        if (index >= 0)
-        {
-            Exercises.remove(index);
-            return true;
+        for (int i = 0; i <Exercises.size() ; i++) {
+            if(Exercises.get(i).getId() == revisedExercise.getId()){
+                Exercises.remove(i);
+            }
         }
+
         return false;
 
     }

@@ -13,7 +13,9 @@ import com.example.ryan.workoutlog.Application.Presentation.DisplayMessageActivi
 import com.example.ryan.workoutlog.Application.Presentation.ExerciseLoggingActivity;
 import com.example.ryan.workoutlog.R;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity implements Serializable {
     LoggedExerciesPersistanceStub stub = new LoggedExerciesPersistanceStub();
     public static void main(String[] args)
     {
@@ -37,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openExerciseLogging(View view){
         Intent intent = new Intent(this, ExerciseLoggingActivity.class);
-        Button loggingButton = (Button) findViewById(R.id.exerciseLogging);
-        intent.putExtra("Stub", (Parcelable) stub);
+
+       // intent.putExtra("intent", stub);
+        //Button loggingButton = (Button) findViewById(R.id.exerciseLogging);
+        //intent.putExtra("stub", stub);
         startActivity(intent);
     }
     private void setupViews(){

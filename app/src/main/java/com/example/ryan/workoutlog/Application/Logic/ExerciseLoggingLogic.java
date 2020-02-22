@@ -71,6 +71,11 @@ public class ExerciseLoggingLogic {
         stub.updateExercise(updated);
         return updated;
     }
+    //check if null?
+    public Exercise getIndex(int position){
+        return stub.getPosition(position);
+        //return stub.getExercises().get(position);
+    }
     //get resistance exercises the user has done
     /*public List<Exercise> getLoggedResistanceExercises(){
 

@@ -25,7 +25,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Application.MainActivity" />
         </activity>
-        <activity android:name=".Application.Presentation.ExerciseLoggingActivity"></activity>
+        <activity android:name=".Application.Presentation.ExerciseLoggingActivity" />
+        <activity
+            android:name=".Application.Presentation.editResistanceExercise"
+            android:label="@string/title_activity_edit_exercise"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

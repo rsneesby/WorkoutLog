@@ -1,33 +1,54 @@
 package com.example.ryan.workoutlog.Application.Domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class CardioExercise extends Exercise {
+public class CardioExercise extends Exercise implements Parcelable{
     private static final double SECONDS_PER_HOUR = 3600;
     public double distance;
+    public static final Parcelable.Creator<CardioExercise> CREATOR = new Parcelable.Creator<CardioExercise>(){
+        public CardioExercise createFromParcel(Parcel in){
 
-    public CardioExercise(int id, Date dayCompleted, double duration, String name, String comment, double distance){
-        super(id, dayCompleted, duration, name, comment);
+            return new CardioExercise(in);
+        }
+        public CardioExercise[] newArray(int size){
+            return new CardioExercise[size];
+        }
+    };
+    private CardioExercise(Parcel in){
+        super(in);
+        distance = in.readDouble();
+
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        super.writeToParcel(dest,flags);
+        dest.writeDouble(this.distance);
+
+    }
+    @Override
+    public int describeContents(){
+        return 0;
+    }
+    public CardioExercise(int id, double duration, String name, String comment, double distance){
+        super(id, duration, name, comment);
         this.distance = distance;
     }
 
-    public CardioExercise(Date dayCompleted, double duration, String name, String comment, double distance){
-        this(0, dayCompleted, duration, name, comment, distance);
-    }
 
-    public CardioExercise(){
-        this(0, new Date(), 0, null, null, 0);
-    }
+   // public CardioExercise(int i, String sprints, String s, int i1){
+        //this(0, 0, null, null, 0);
+    //}
 
     //Returns the average speed the exercise was completed at in km/h
     public double getAverageSpeed(){
         double totalHours = duration/SECONDS_PER_HOUR;
         double totalKilometers = distance/1000;
-
         if(totalHours == 0){
             return 0;
         }
-
         return totalKilometers/totalHours;
     }
     public double getDistance(){
@@ -35,5 +56,10 @@ public class CardioExercise extends Exercise {
     }
     public void setDistance(double distance){
         this.distance = distance;
+    }
+    public String toString(){
+        String temp="Name: "+name+" Duration: "+duration+"(km)";
+
+        return temp;
     }
 }
