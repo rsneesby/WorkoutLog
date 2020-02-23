@@ -2,8 +2,10 @@ package com.example.ryan.workoutlog.Application.Presentation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,6 +42,35 @@ public class ExerciseLoggingActivity extends Activity implements Serializable {
         listView = (ListView) findViewById(R.id.test);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.logged_exercise_listview, R.id.exerciseList, loggedExercises);
         listView.setAdapter(adapter);
+        //hold click for alertdialog to pop asking user if they want to delete the item
+        listView.setLongClickable(true);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           final int position, long id) {
+
+               // final Exercise inFocus = exerciseLog.getIndex(position);
+                AlertDialog.Builder backConfirmation = new AlertDialog.Builder(ExerciseLoggingActivity.this);
+                //backConfirmation.setTitle("Delete Exercise?");
+                backConfirmation.setPositiveButton("Delete Exercise?", new DialogInterface.OnClickListener() {
+                    //Returns without saving edited data
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        exerciseLog.deleteExercise(exerciseLog.getIndex(position));
+                        setUpViews();
+                    }
+                });
+                backConfirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+            backConfirmation.show();
+                return true;
+            }
+
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,9 +87,10 @@ public class ExerciseLoggingActivity extends Activity implements Serializable {
             }
         });
     }
-/*Receives edited Exercise from the editResistanceExercise.java activity when user hits the back button and will update the exercise in the (stub) DB
-* Uses onResume() to update pageview
-* */
+
+    /*Receives edited Exercise from the editResistanceExercise.java activity when user hits the back button and will update the exercise in the (stub) DB
+     * Uses onResume() to update pageview
+     * */
     //TODO better way to refresh data than calling setUpViews again? using onResume?
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to

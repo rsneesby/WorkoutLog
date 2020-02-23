@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Application.Presentation.editResistanceExercise">
+    android:layout_height="wrap_content"
+    tools:context=".Application.Presentation.editResistanceExercise"
+    tools:layout_editor_absoluteY="25dp">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="132dp">
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/textView"
@@ -39,12 +39,25 @@
             android:layout_height="wrap_content"
             android:text="TextView" />
 
-        <Button
-            android:id="@+id/btn_edit"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btn_edit"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:background="@drawable/buttons"/>
+
+            <Button
+                android:id="@+id/btn_saveEdit"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:background="@drawable/buttons"/>
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

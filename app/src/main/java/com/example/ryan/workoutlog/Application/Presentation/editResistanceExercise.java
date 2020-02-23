@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -39,12 +40,13 @@ public class editResistanceExercise extends AppCompatActivity {
     Exercise tempExercise;
     Exercise updatedExercise;
 
+    Boolean confirmUpdates = true; //will be set true when user confirms changes and false when an update has been made but not yet saved
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_resistance_exercise);
 
-       // setUpViews();
+       setUpViews();
         temp = findViewById(R.id.textView);
         weight = findViewById(R.id.textView3);
         sets = findViewById(R.id.textView4);
@@ -141,6 +143,7 @@ public class editResistanceExercise extends AppCompatActivity {
                                 editWeight.invalidate();
                                 editSets.invalidate();
                                 editReps.invalidate();
+                                confirmUpdates = false;
                                 dialog.dismiss();
                                 //Toast to notify user their change was made
                                 Context context = getApplicationContext();
@@ -163,12 +166,24 @@ public class editResistanceExercise extends AppCompatActivity {
 Click listeners are for individual exercise components so they can be edited individually if necessary
 * */
     public void setUpViews() {
+        Button btn_saveEdit = findViewById(R.id.btn_saveEdit);
+        btn_saveEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmUpdates = true;
+                Context context = getApplicationContext();
+                CharSequence text = "Changes Saved";
+                int duration = Toast.LENGTH_SHORT;
 
+                Toast toast = Toast.makeText(context,text,duration);
+                toast.show();
+            }
+        });
     }
 /*
 * Method to allow for editing and updating of single values
 * Will popup an AlertDialog when an individual component of the exercise is clicked, represented by a TextView
-* TODO add a cancel button,
+*
 * */
     protected Exercise editMessageAlert(String valueToUpdate) {
 
@@ -180,6 +195,12 @@ Click listeners are for individual exercise components so they can be edited ind
         alertDialog.setTitle("Enter New Value");
         alertDialog.setMessage(valueOf(tempRes1.getWeight()));
         alertDialog.setView(edittext);
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Submit",
 
                 new DialogInterface.OnClickListener() {
@@ -200,16 +221,16 @@ Click listeners are for individual exercise components so they can be edited ind
                                 reps.setText("Edit Reps: " + tempRes1.getReps());
                                 break;
                         }
-
+                        confirmUpdates = false;
                         edittext.invalidate();
 
                         //Toast to notify user their change was made
                         Context context = getApplicationContext();
                         CharSequence text = "Updated";
                         int duration = Toast.LENGTH_SHORT;
-
                         Toast toast = Toast.makeText(context,text,duration);
                         toast.show();
+
                         dialog.dismiss();
 
                     }
@@ -219,12 +240,45 @@ Click listeners are for individual exercise components so they can be edited ind
     }
 //when user returns from editing page, value is sent to previous page to update list
     //TODO add a confirmation to ensure user wants to actually update or return to previous page without saving changes
+    //use the confirmation to change confirmation boolean to true, also when changes are saved, should it automatically go to previous page or wait for user to manually return
     @Override
     public void onBackPressed() {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("updatedExercise",updatedExercise);
-        setResult(Activity.RESULT_OK,resultIntent);
-        finish();
+        String positiveButton = "Yes";
+       if(!confirmUpdates) {
+           AlertDialog.Builder backConfirmation = new AlertDialog.Builder(this);
+           backConfirmation.setTitle("Continue without saving updates?");
+           backConfirmation.setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
+              //Returns without saving edited data
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+
+                   finish();
+               }
+           });
+           backConfirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+                    //remain on current page
+               }
+           });
+           backConfirmation.setNeutralButton("Save", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+                   Intent resultIntent = new Intent();
+                   resultIntent.putExtra("updatedExercise", updatedExercise);
+                   setResult(Activity.RESULT_OK, resultIntent);
+                   finish();
+               }
+           });
+           backConfirmation.show();
+       }
+       else{
+           Intent resultIntent = new Intent();
+           resultIntent.putExtra("updatedExercise", updatedExercise);
+           setResult(Activity.RESULT_OK, resultIntent);
+           finish();
+       }
+
     }
 
 
