@@ -12,9 +12,10 @@ public class displayToasts {
     }
     public Toast makeToast(String displayString, Context applicationContext){
         Context context = applicationContext;
-        CharSequence text = "Deleted";
+        CharSequence text = displayString;
         int duration = Toast.LENGTH_SHORT;
         Toast temp = Toast.makeText(context,text,duration);
+        temp.show();
         return temp;
     }
 }

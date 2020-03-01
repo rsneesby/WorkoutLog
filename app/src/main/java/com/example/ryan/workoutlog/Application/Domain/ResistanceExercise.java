@@ -76,7 +76,7 @@ public class ResistanceExercise extends Exercise implements Parcelable {
     }
    //returns in format-   Name, reps x sets, weight, comment(optional)
     public String toString(){
-        String temp = "Exercise: "+this.name+" Weight: "+this.weight+" Sets x Reps: "+this.sets+"x"+this.reps;
+        String temp = "Exercise: "+this.name+" Weight: "+this.weight+" Sets x Reps: "+this.sets+"x"+this.reps+" Date: "+super.getDayCompleted();
 
         return temp;
     }

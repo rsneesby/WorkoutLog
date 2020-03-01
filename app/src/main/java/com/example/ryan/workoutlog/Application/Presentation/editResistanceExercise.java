@@ -39,7 +39,7 @@ public class editResistanceExercise extends AppCompatActivity {
     TextView reps;
     Exercise tempExercise;
     Exercise updatedExercise;
-
+    displayToasts toast = new displayToasts(); //will make toasts for various purposes, takes String message to show user, and getApplicationContext as inputs
     Boolean confirmUpdates = true; //will be set true when user confirms changes and false when an update has been made but not yet saved
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,6 @@ public class editResistanceExercise extends AppCompatActivity {
         final Exercise editInProgress = data.getParcelable("value");
         tempExercise = editInProgress;
         updatedExercise = editInProgress;
-
         //Set up initial values to see what user is editing
         if (editInProgress instanceof ResistanceExercise) {
             ResistanceExercise tempRes = (ResistanceExercise) editInProgress;
@@ -88,8 +87,6 @@ public class editResistanceExercise extends AppCompatActivity {
             CardioExercise tempCardio = (CardioExercise) editInProgress;
             temp.setText(tempCardio.toString());
         }
-
-
  /*
  * Edit button to edit entire exercise at once
  * Uses EditText's to accept user input then update the exercise in focus
@@ -103,25 +100,21 @@ public class editResistanceExercise extends AppCompatActivity {
 
                 final LinearLayout layout = new LinearLayout(editResistanceExercise.this);
                 alertDialog.setTitle("Weight x Sets x Reps");
-                //alertDialog.setMessage(valueOf(tempRes1.getWeight()));
                 layout.setOrientation(LinearLayout.HORIZONTAL);
 
                 final EditText editWeight = new EditText(editResistanceExercise.this);
                 final EditText editSets = new EditText(editResistanceExercise.this);
                 final EditText editReps = new EditText(editResistanceExercise.this);
-               // editWeight.setText(String.valueOf(editResistance.getWeight()));
                 editSets.setText(String.valueOf(editResistance.getSets()));
                 editReps.setText(String.valueOf(editResistance.getReps()));
 
                 editWeight.setHint("Weight");
+                editSets.setHint("Sets");
+                editReps.setHint("Reps");
                 layout.addView(editWeight);
                 layout.addView(editSets);
                 layout.addView(editReps);
-
-
-
                 alertDialog.setView(layout);
-
 
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Submit",
 
@@ -145,22 +138,13 @@ public class editResistanceExercise extends AppCompatActivity {
                                 editReps.invalidate();
                                 confirmUpdates = false;
                                 dialog.dismiss();
-                                //Toast to notify user their change was made
-                                Context context = getApplicationContext();
-                                CharSequence text = "Updated";
-                                int duration = Toast.LENGTH_SHORT;
 
-                                Toast toast = Toast.makeText(context,text,duration);
-                                toast.show();
+                                toast.makeToast("Updated",getApplicationContext());
                             }
                         });
-
                 alertDialog.show();
-
             }
         });
-
-
     }
 /*Set up page on creation
 Click listeners are for individual exercise components so they can be edited individually if necessary
@@ -171,12 +155,7 @@ Click listeners are for individual exercise components so they can be edited ind
             @Override
             public void onClick(View view) {
                 confirmUpdates = true;
-                Context context = getApplicationContext();
-                CharSequence text = "Changes Saved";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context,text,duration);
-                toast.show();
+                toast.makeToast("Changes Saved",getApplicationContext());
             }
         });
     }
@@ -186,7 +165,6 @@ Click listeners are for individual exercise components so they can be edited ind
 *
 * */
     protected Exercise editMessageAlert(String valueToUpdate) {
-
         final ResistanceExercise tempRes1 = (ResistanceExercise) tempExercise;
         final EditText edittext = new EditText(this);
         final AlertDialog alertDialog = new AlertDialog.Builder(editResistanceExercise.this).create();
@@ -223,16 +201,9 @@ Click listeners are for individual exercise components so they can be edited ind
                         }
                         confirmUpdates = false;
                         edittext.invalidate();
-
-                        //Toast to notify user their change was made
-                        Context context = getApplicationContext();
-                        CharSequence text = "Updated";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context,text,duration);
-                        toast.show();
+                        toast.makeToast("Updated",getApplicationContext());
 
                         dialog.dismiss();
-
                     }
                 });
         alertDialog.show();
@@ -278,8 +249,5 @@ Click listeners are for individual exercise components so they can be edited ind
            setResult(Activity.RESULT_OK, resultIntent);
            finish();
        }
-
     }
-
-
 }

@@ -18,7 +18,7 @@ import java.util.ListIterator;
 
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
-public class AccessLoggedExerciseUnitTest {
+public class ExerciseLoggingLogicUnitTest {
     LoggedExerciesPersistanceStub stub = new LoggedExerciesPersistanceStub();
    /* @Override
     protected void setUp(){
@@ -41,19 +41,32 @@ public class AccessLoggedExerciseUnitTest {
         //assertTrue(result != null && !result.isEmpty());
         //assertTrue(result.contains(exerciseToAdd));
 
-        ListIterator<Exercise> litr = null;
-        test.addExercise(new CardioExercise(0, new Date(), 50, "Running", "", 5));
-        litr=result.listIterator();
-        while(litr.hasNext()){
-            System.out.println(litr.next().getClass());
-            assertTrue(litr.next() instanceof ResistanceExercise);
+
+        CardioExercise testCardio = new CardioExercise(0, 50, "Running", "", 5);
+        test.addExercise(testCardio);
+        assertTrue(test.getExercises().contains(testCardio));
+        for (int i = 0; i <result.size() ; i++) {
+            assertTrue(result.get(i) instanceof ResistanceExercise);
+        }
+    }
+    @Test
+    public void retrieveCardioExerciseList(){
+        System.out.println("Runing retrieveCardioExerciseList test");
+        ExerciseLoggingLogic test = new ExerciseLoggingLogic(stub);
+        List<Exercise> result = test.getCardioExercises();
+
+        ResistanceExercise testResistance = new ResistanceExercise(13, 0, "Squats", "", 225, 12, 1);
+        test.addExercise(testResistance);
+        assertTrue(test.getExercises().contains(testResistance));
+        for (int i = 0; i <result.size() ; i++) {
+            assertTrue(result.get(i) instanceof CardioExercise);
         }
     }
 
     @Test
     public void testDeleteExercise(){
         ExerciseLoggingLogic test = new ExerciseLoggingLogic(stub);
-        CardioExercise sample =new CardioExercise(0, new Date(), 50, "Running", "", 5);
+        CardioExercise sample =new CardioExercise(0,  50, "Running", "", 5);
         test.addExercise(sample);
         assertTrue(test.getExercises().contains(sample));
         //now test delete
@@ -65,7 +78,7 @@ public class AccessLoggedExerciseUnitTest {
     @Test
     public void testEditExercise(){
         ExerciseLoggingLogic test = new ExerciseLoggingLogic(stub);
-        CardioExercise sample =new CardioExercise(0, new Date(), 50, "Running", "", 5);
+        CardioExercise sample =new CardioExercise(0,  50, "Running", "", 5);
         test.addExercise(sample);
 
         assertTrue(test.getExercises().contains(sample));
@@ -75,4 +88,16 @@ public class AccessLoggedExerciseUnitTest {
         CardioExercise sampleResult2 = (CardioExercise) test.editExercise(sample,"distance","invalid input");
         assertTrue(sampleResult2.getDistance()==25);
     }
+
+    @Test
+    public void testAddExercise() {
+        ExerciseLoggingLogic test = new ExerciseLoggingLogic(new LoggedExerciesPersistanceStub());
+        ResistanceExercise testAdd = new ResistanceExercise(13, 0, "Squats", "", 225, 12, 1);
+        test.addExercise(testAdd);
+        assertTrue(test.getResistanceExercises().contains(testAdd));
+        assertTrue(test.getExercises().contains(testAdd));
+
+
+    }
+
 }

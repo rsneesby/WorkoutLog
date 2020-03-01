@@ -1,13 +1,20 @@
 package com.example.ryan.workoutlog.Application.Domain;
 
+import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import java.util.Date;
+import com.example.ryan.workoutlog.R;
 
 public class CardioExercise extends Exercise implements Parcelable{
     private static final double SECONDS_PER_HOUR = 3600;
-    public double distance;
+    public double distance=0;
     public static final Parcelable.Creator<CardioExercise> CREATOR = new Parcelable.Creator<CardioExercise>(){
         public CardioExercise createFromParcel(Parcel in){
 
@@ -57,9 +64,15 @@ public class CardioExercise extends Exercise implements Parcelable{
     public void setDistance(double distance){
         this.distance = distance;
     }
+
+    public double getDistanceAsKM(){
+        return this.distance/1000;
+    }
     public String toString(){
         String temp="Name: "+name+" Duration: "+duration+"(km)";
 
         return temp;
     }
+
+
 }

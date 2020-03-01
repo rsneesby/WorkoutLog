@@ -7,7 +7,7 @@ import com.example.ryan.workoutlog.UnitTests.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    AccessLoggedExerciseUnitTest.class
+    ExerciseLoggingLogicUnitTest.class
 })
 public class AllUnitTests {
 

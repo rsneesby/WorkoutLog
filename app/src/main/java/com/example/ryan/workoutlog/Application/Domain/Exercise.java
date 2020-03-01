@@ -12,7 +12,7 @@ public class Exercise implements ExerciseInterface,Parcelable{
     public double duration;
     public String name;
     public String comment;
-
+    public Date exerciseDate;
     protected int id;
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
@@ -31,6 +31,7 @@ public class Exercise implements ExerciseInterface,Parcelable{
         this.duration = newDuration;
         this.name = name;
         this.comment = comment;
+        this.exerciseDate = new Date();
     }
     //parcelling constructor
     protected Exercise(Parcel in){
@@ -39,6 +40,7 @@ public class Exercise implements ExerciseInterface,Parcelable{
         this.duration = in.readDouble();
         this.name = in.readString();
         this.comment = in.readString();
+        this.exerciseDate = new Date(in.readLong()); //TODO make sure this works
     }
     @Override
     public void writeToParcel(Parcel dest, int flags){
@@ -47,6 +49,7 @@ public class Exercise implements ExerciseInterface,Parcelable{
         dest.writeDouble(this.duration);
         dest.writeString(this.name);
         dest.writeString(this.comment);
+        dest.writeLong(exerciseDate.getTime());
     }
     @Override
     public int describeContents(){
@@ -75,7 +78,9 @@ public class Exercise implements ExerciseInterface,Parcelable{
     public void setComment(String comment){
         this.comment = comment;
     }
-
+    public Date getDayCompleted(){
+        return this.exerciseDate;
+    }
     public Exercise(){
         this(0, 0, null, null);
     }
