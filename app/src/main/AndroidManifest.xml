@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Application.Presentation.Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Application.Presentation.editCardioExercise"
             android:label="@string/title_activity_edit_cardio_exercise"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Application.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

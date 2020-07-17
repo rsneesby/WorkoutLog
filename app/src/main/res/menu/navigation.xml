@@ -10,11 +10,11 @@
         android:title="Home" />
     <item
         android:id="@+id/loggedExerciseNav"
-        android:icon="@drawable/baseline_reorder_black_24dp"
+        android:icon="@drawable/baseline_home_black_24dp"
         android:iconTint="@color/colorWhite"
         android:title="Logged Exercises" />
     <item
         android:id="@+id/profileMenu"
-        android:icon="@drawable/baseline_add_box_black_24dp"
+        android:icon="@drawable/baseline_home_black_24dp"
         android:title="Profile" />
 </menu>

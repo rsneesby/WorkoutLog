@@ -1,7 +1,6 @@
 package com.example.ryan.workoutlog.Application;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -10,15 +9,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
-import com.example.ryan.workoutlog.Application.Presentation.DisplayMessageActivity;
 import com.example.ryan.workoutlog.Application.Presentation.ExerciseLoggingActivity;
+import com.example.ryan.workoutlog.Application.Presentation.Profile;
 import com.example.ryan.workoutlog.R;
 
 import java.io.Serializable;
@@ -61,11 +57,13 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                        // Intent intent = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
                         //startActivity(intent);
                         openExerciseLogging();
-                        break;
+                        //break;
                     case R.id.settings:
                         Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
-                    case R.id.mycart:
-                        Toast.makeText(MainActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    case R.id.profile:
+                        Intent intent = new Intent(MainActivity.this, Profile.class);
+                        startActivity(intent);
+                        break;
                     default:
                         return true;
                 }
@@ -88,6 +86,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         Intent intent = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
 
                         startActivity(intent);
+                        break;
+                    case R.id.profileMenu:
+                        Intent intent1 = new Intent(MainActivity.this,Profile.class);
+                        startActivity(intent1);
+                        break;
+
                 }
                 return false;
             }
@@ -97,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     public void openExerciseLogging(){
         Intent intent = new Intent(this, ExerciseLoggingActivity.class);
+        startActivity(intent);
+    }
+    public void openProfile(){
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
     private void setupViews(){

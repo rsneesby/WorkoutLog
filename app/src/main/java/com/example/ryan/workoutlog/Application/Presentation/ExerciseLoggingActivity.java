@@ -53,13 +53,18 @@ public class ExerciseLoggingActivity extends Activity implements Serializable {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch(menuItem.getItemId()){
                     case R.id.loggedExerciseNav:
-                        //Intent intent = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
+                        Intent intent = new Intent(ExerciseLoggingActivity.this, ExerciseLoggingActivity.class);
 
-                        //startActivity(intent);
-                        break;
-                    case R.id.home_nav:
-                        Intent intent = new Intent(ExerciseLoggingActivity.this, MainActivity.class);
                         startActivity(intent);
+                        break;
+                        //TODO home button has to be hit twice to actually load page??
+                    case R.id.home_nav:
+                        Intent intent2 = new Intent(ExerciseLoggingActivity.this, MainActivity.class);
+                        startActivity(intent2);
+                    case R.id.profileMenu:
+                        Intent intent1 = new Intent(ExerciseLoggingActivity.this,Profile.class);
+                        startActivity(intent1);
+                        break;
                 }
                 return false;
             }
