@@ -1,12 +1,13 @@
 package com.example.ryan.workoutlog.Application.Presentation;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.ryan.workoutlog.Application.MainActivity;
 import com.example.ryan.workoutlog.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 

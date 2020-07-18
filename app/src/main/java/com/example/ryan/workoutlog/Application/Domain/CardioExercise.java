@@ -1,16 +1,7 @@
 package com.example.ryan.workoutlog.Application.Domain;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.ryan.workoutlog.R;
 
 public class CardioExercise extends Exercise implements Parcelable{
     private static final double SECONDS_PER_HOUR = 3600;

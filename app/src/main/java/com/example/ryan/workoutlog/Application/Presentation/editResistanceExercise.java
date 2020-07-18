@@ -1,34 +1,23 @@
 package com.example.ryan.workoutlog.Application.Presentation;
 
 import android.app.Activity;
-import android.app.Instrumentation;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Layout;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
 import com.example.ryan.workoutlog.Application.Domain.Exercise;
 import com.example.ryan.workoutlog.Application.Domain.ResistanceExercise;
-import com.example.ryan.workoutlog.Application.MainActivity;
 import com.example.ryan.workoutlog.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import static java.lang.String.valueOf;
 
@@ -246,7 +235,7 @@ Click listeners are for individual exercise components so they can be edited ind
        else{
            Intent resultIntent = new Intent();
            resultIntent.putExtra("updatedExercise", updatedExercise);
-           setResult(Activity.RESULT_OK, resultIntent);
+           setResult(AppCompatActivity.RESULT_OK, resultIntent);
            finish();
        }
     }

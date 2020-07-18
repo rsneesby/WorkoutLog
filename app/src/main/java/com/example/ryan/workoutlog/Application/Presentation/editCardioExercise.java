@@ -1,11 +1,10 @@
 package com.example.ryan.workoutlog.Application.Presentation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +14,9 @@ import android.widget.TextView;
 
 import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
 import com.example.ryan.workoutlog.Application.Domain.Exercise;
-import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
 import com.example.ryan.workoutlog.R;
 
-import static java.lang.String.valueOf;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class editCardioExercise extends AppCompatActivity {
     TextView distance;
@@ -215,7 +213,7 @@ public class editCardioExercise extends AppCompatActivity {
         else{
             Intent resultIntent = new Intent();
             resultIntent.putExtra("updatedExercise", updatedExercise);
-            setResult(Activity.RESULT_OK, resultIntent);
+            setResult(AppCompatActivity.RESULT_OK, resultIntent);
             finish();
         }
     }

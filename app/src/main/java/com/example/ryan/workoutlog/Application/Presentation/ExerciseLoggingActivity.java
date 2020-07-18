@@ -1,12 +1,8 @@
 package com.example.ryan.workoutlog.Application.Presentation;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +19,16 @@ import com.example.ryan.workoutlog.Application.Logic.ExerciseLoggingLogic;
 import com.example.ryan.workoutlog.Application.MainActivity;
 import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
 import com.example.ryan.workoutlog.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class ExerciseLoggingActivity extends Activity implements Serializable {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ExerciseLoggingActivity extends AppCompatActivity implements Serializable {
 
     private LoggedExerciesPersistanceStub stub = new LoggedExerciesPersistanceStub();
     private ExerciseLoggingLogic exerciseLog = new ExerciseLoggingLogic(stub);
