@@ -1,10 +1,10 @@
-package com.example.ryan.workoutlog.Application.Presentation;
+package com.example.ryan.workoutlog.application.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.ryan.workoutlog.Application.MainActivity;
+import com.example.ryan.workoutlog.application.MainActivity;
 import com.example.ryan.workoutlog.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,6 +46,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
+    @SuppressWarnings("EmptyMethod")
     protected void setUpViews(){
 
     }

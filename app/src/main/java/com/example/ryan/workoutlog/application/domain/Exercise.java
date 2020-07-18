@@ -1,9 +1,9 @@
-package com.example.ryan.workoutlog.Application.Domain;
+package com.example.ryan.workoutlog.application.domain;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.ryan.workoutlog.Application.Domain.DomainInterfaces.ExerciseInterface;
+import com.example.ryan.workoutlog.application.domain.domainInterfaces.ExerciseInterface;
 
 import java.util.Date;
 

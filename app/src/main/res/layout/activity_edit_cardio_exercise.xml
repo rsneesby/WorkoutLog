@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Application.Presentation.editCardioExercise"
+    tools:context=".application.presentation.editCardioExercise"
     tools:layout_editor_absoluteY="25dp">
 
     <LinearLayout

@@ -1,22 +1,19 @@
-package com.example.ryan.workoutlog.Application.Logic;
+package com.example.ryan.workoutlog.application.logic;
 
-import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
-import com.example.ryan.workoutlog.Application.Domain.Exercise;
-import com.example.ryan.workoutlog.Application.Domain.ResistanceExercise;
-import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
-
-import org.w3c.dom.Node;
+import com.example.ryan.workoutlog.application.domain.CardioExercise;
+import com.example.ryan.workoutlog.application.domain.Exercise;
+import com.example.ryan.workoutlog.application.domain.ResistanceExercise;
+import com.example.ryan.workoutlog.application.persistance.LoggedExercisePersistanceStub;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.ListIterator;
 
 public class ExerciseLoggingLogic {
-    LoggedExerciesPersistanceStub stub;
+    LoggedExercisePersistanceStub stub;
     Hashtable availableExercises = new Hashtable();
-    public ExerciseLoggingLogic(LoggedExerciesPersistanceStub stub){
+    public ExerciseLoggingLogic(LoggedExercisePersistanceStub stub){
        addStub(stub);
 
 
@@ -26,11 +23,11 @@ public class ExerciseLoggingLogic {
     Use upper case to store to avoid case differences allowing user to submit for example, Squat and squat
     TODO is the case matching necessary?
     * */
-    public void addExerciseType(String name,String type){
+    public void addExerciseType(String name){
 
         availableExercises.put(name.toUpperCase(),name);
     }
-    private void addStub(LoggedExerciesPersistanceStub stub){
+    private void addStub(LoggedExercisePersistanceStub stub){
         this.stub = stub;
     }
     public List<Exercise> getExercises(){
@@ -70,31 +67,33 @@ public class ExerciseLoggingLogic {
     //TODO make sure it's not possible to create Exercise object
     //also confirm that Object value is the proper type, do that at the presentation level?
     public Exercise editExercise(Exercise old,String valueToUpdate,String value){
-        Exercise updated = old;
-        if(updated instanceof ResistanceExercise) {
+        //Exercise updated = old;
+        if(old instanceof ResistanceExercise) {
             switch (valueToUpdate) {
                 case "Weight":
-                    ((ResistanceExercise) updated).setWeight(Double.valueOf(value));
+                    ((ResistanceExercise) old).setWeight(Double.valueOf(value));
+                    break;
+                case "Cardio":
                     break;
 
             }
         }
-        else if(updated instanceof CardioExercise){
+        else if(old instanceof CardioExercise){
             switch (valueToUpdate){
                 case "distance":
                    try {
-                       ((CardioExercise) updated).setDistance(Double.valueOf(value));
-                       stub.updateExercise(updated);
+                       ((CardioExercise) old).setDistance(Double.valueOf(value));
+                       stub.updateExercise(old);
                    }
                    catch (Exception e){
                        //TODO need a way to signal user that value wasn't updated
-                       return updated;
+                       return old;
                    }
                    break;
             }
         }
-        stub.updateExercise(updated);
-        return updated;
+        stub.updateExercise(old);
+        return old;
     }
 
     //TODO throw exception if null or just return a null object and deal with it at caller?

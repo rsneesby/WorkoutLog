@@ -9,15 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".Application.Presentation.Profile"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".Application.Presentation.editCardioExercise"
+            android:name=".application.presentation.editCardioExercise"
             android:label="@string/title_activity_edit_cardio_exercise"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Application.MainActivity">
+        <activity android:name=".application.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,17 +22,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Application.Presentation.DisplayMessageActivity"
-            android:parentActivityName=".Application.MainActivity">
+            android:name=".application.presentation.DisplayMessageActivity"
+            android:parentActivityName=".application.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Application.MainActivity" />
+                android:value=".application.MainActivity" />
         </activity>
-        <activity android:name=".Application.Presentation.ExerciseLoggingActivity" />
+        <activity android:name=".application.presentation.ExerciseLoggingActivity" />
         <activity
-            android:name=".Application.Presentation.editResistanceExercise"
+            android:name=".application.presentation.editResistanceExercise"
             android:label="@string/title_activity_edit_exercise"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

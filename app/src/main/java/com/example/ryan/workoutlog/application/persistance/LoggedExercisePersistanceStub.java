@@ -1,25 +1,22 @@
-package com.example.ryan.workoutlog.Application.Persistance;
-import com.example.ryan.workoutlog.Application.Domain.*;
+package com.example.ryan.workoutlog.application.persistance;
+import com.example.ryan.workoutlog.application.domain.*;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
-import java.util.Hashtable;
 import java.util.List;
 
-public class LoggedExerciesPersistanceStub implements Serializable {
+public class LoggedExercisePersistanceStub implements Serializable {
     private ArrayList<Exercise> Exercises; //private to avoid outside editing
 
     // Takes in any list of exercises
-    public LoggedExerciesPersistanceStub(ArrayList<Exercise> theList) {
+    public LoggedExercisePersistanceStub(ArrayList<Exercise> theList) {
         this.Exercises = theList;
     }
 
 
     // Creates an empty list if none provided
-    public LoggedExerciesPersistanceStub() {
+    public LoggedExercisePersistanceStub() {
 
         this.Exercises = new ArrayList<>();
         // 10km run sample

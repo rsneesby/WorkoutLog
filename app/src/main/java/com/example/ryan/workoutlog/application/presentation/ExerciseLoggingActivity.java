@@ -1,4 +1,4 @@
-package com.example.ryan.workoutlog.Application.Presentation;
+package com.example.ryan.workoutlog.application.presentation;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,13 +12,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
-import com.example.ryan.workoutlog.Application.Domain.Exercise;
-import com.example.ryan.workoutlog.Application.Domain.ResistanceExercise;
-import com.example.ryan.workoutlog.Application.Logic.ExerciseLoggingLogic;
-import com.example.ryan.workoutlog.Application.MainActivity;
-import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
 import com.example.ryan.workoutlog.R;
+import com.example.ryan.workoutlog.application.MainActivity;
+import com.example.ryan.workoutlog.application.domain.CardioExercise;
+import com.example.ryan.workoutlog.application.domain.Exercise;
+import com.example.ryan.workoutlog.application.domain.ResistanceExercise;
+import com.example.ryan.workoutlog.application.logic.ExerciseLoggingLogic;
+import com.example.ryan.workoutlog.application.persistance.LoggedExercisePersistanceStub;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.Serializable;
@@ -30,11 +30,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ExerciseLoggingActivity extends AppCompatActivity implements Serializable {
 
-    private LoggedExerciesPersistanceStub stub = new LoggedExerciesPersistanceStub();
+    private LoggedExercisePersistanceStub stub = new LoggedExercisePersistanceStub();
     private ExerciseLoggingLogic exerciseLog = new ExerciseLoggingLogic(stub);
     private displayToasts toastBuilder = new displayToasts();
-    private BottomNavigationView mMainNav;
-    String loggedExercises[];
+
+    String[] loggedExercises;
     ListView listView;
 
     @Override
@@ -47,7 +47,7 @@ public class ExerciseLoggingActivity extends AppCompatActivity implements Serial
 
     protected void setUpViews() {
 
-        mMainNav =(BottomNavigationView) findViewById(R.id.main_nav);
+        BottomNavigationView mMainNav =(BottomNavigationView) findViewById(R.id.main_nav);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -139,7 +139,7 @@ public class ExerciseLoggingActivity extends AppCompatActivity implements Serial
         }
 
     }
-    public void newExercise(View view){
+    public void newExercise(){
         //TODO add ability to also select values from a drop down in addition to entering custom ones, can this be done with 1 object?
         //also could provide user with general list, then allow them to add custom exercises to that drop down list for the future
         /*int id, double duration, String name, String comment, double weight, int reps,int sets){
@@ -197,11 +197,7 @@ public class ExerciseLoggingActivity extends AppCompatActivity implements Serial
         String[] a = new String[stub.getSize()];
         List<Exercise> exercises = stub.getExercises();
         for (int i = 0; i < stub.getSize(); i++) {
-            if (exercises.get(i) instanceof CardioExercise) {
-                a[i] = exercises.get(i).toString();
-            } else {
-                a[i] = exercises.get(i).toString();
-            }
+            a[i] = exercises.get(i).toString();
         }
         return a;
     }

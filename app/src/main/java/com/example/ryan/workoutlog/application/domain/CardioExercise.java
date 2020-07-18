@@ -1,11 +1,11 @@
-package com.example.ryan.workoutlog.Application.Domain;
+package com.example.ryan.workoutlog.application.domain;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class CardioExercise extends Exercise implements Parcelable{
     private static final double SECONDS_PER_HOUR = 3600;
-    public double distance=0;
+    public double distance;
     public static final Parcelable.Creator<CardioExercise> CREATOR = new Parcelable.Creator<CardioExercise>(){
         public CardioExercise createFromParcel(Parcel in){
 
@@ -60,9 +60,7 @@ public class CardioExercise extends Exercise implements Parcelable{
         return this.distance/1000;
     }
     public String toString(){
-        String temp="Name: "+name+" Duration: "+duration+"(km)";
-
-        return temp;
+        return "Name: "+name+" Duration: "+duration+"(km)";
     }
 
 

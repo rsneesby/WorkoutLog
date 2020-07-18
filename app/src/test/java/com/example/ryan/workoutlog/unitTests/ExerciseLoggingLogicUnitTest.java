@@ -1,20 +1,15 @@
-package com.example.ryan.workoutlog.UnitTests;
+package com.example.ryan.workoutlog.unitTests;
 
 
-import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
-import com.example.ryan.workoutlog.Application.Domain.Exercise;
-import com.example.ryan.workoutlog.Application.Domain.ResistanceExercise;
-import com.example.ryan.workoutlog.Application.Logic.ExerciseLoggingLogic;
-import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
-
-import junit.framework.TestCase;
+import com.example.ryan.workoutlog.application.domain.CardioExercise;
+import com.example.ryan.workoutlog.application.domain.Exercise;
+import com.example.ryan.workoutlog.application.domain.ResistanceExercise;
+import com.example.ryan.workoutlog.application.logic.ExerciseLoggingLogic;
+import com.example.ryan.workoutlog.application.persistance.LoggedExerciesPersistanceStub;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
 
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;

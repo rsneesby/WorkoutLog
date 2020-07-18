@@ -1,10 +1,10 @@
-package com.example.ryan.workoutlog.Application.Presentation;
+package com.example.ryan.workoutlog.application.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ryan.workoutlog.Application.MainActivity;
+import com.example.ryan.workoutlog.application.MainActivity;
 import com.example.ryan.workoutlog.R;
 
 import androidx.appcompat.app.AppCompatActivity;

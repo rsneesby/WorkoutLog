@@ -1,4 +1,4 @@
-package com.example.ryan.workoutlog.Application.Presentation;
+package com.example.ryan.workoutlog.application.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.ryan.workoutlog.Application.Domain.CardioExercise;
-import com.example.ryan.workoutlog.Application.Domain.Exercise;
+import com.example.ryan.workoutlog.application.domain.CardioExercise;
+import com.example.ryan.workoutlog.application.domain.Exercise;
 import com.example.ryan.workoutlog.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,11 +131,11 @@ public class editCardioExercise extends AppCompatActivity {
      * Will popup an AlertDialog when an individual component of the exercise is clicked, represented by a TextView
      *
      * */
-    protected Exercise editMessageAlert(String valueToUpdate) {
+    protected void editMessageAlert(String valueToUpdate) {
         final CardioExercise tempRes1 = (CardioExercise) tempExercise;
         final EditText edittext = new EditText(this);
         final AlertDialog alertDialog = new AlertDialog.Builder(editCardioExercise.this).create();
-        final String newValue = valueToUpdate;
+        //final String newValue = valueToUpdate;
 
         alertDialog.setTitle("Enter New Value");
         //alertDialog.setMessage(valueOf(tempRes1.getWeight()));
@@ -174,7 +174,6 @@ public class editCardioExercise extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
-        return tempExercise;
     }
     //when user returns from editing page, value is sent to previous page to update list
     //TODO add a confirmation to ensure user wants to actually update or return to previous page without saving changes
