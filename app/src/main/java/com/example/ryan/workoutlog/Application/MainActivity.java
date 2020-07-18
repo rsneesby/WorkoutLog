@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.ryan.workoutlog.Application.Persistance.LoggedExerciesPersistanceStub;
 import com.example.ryan.workoutlog.Application.Presentation.DisplayMessageActivity;
 import com.example.ryan.workoutlog.Application.Presentation.ExerciseLoggingActivity;
+import com.example.ryan.workoutlog.Application.Presentation.Profile;
 import com.example.ryan.workoutlog.R;
 
 import java.io.Serializable;
@@ -57,15 +58,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.account:
-                       // Intent intent = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
-                        //startActivity(intent);
-                        openExerciseLogging();
+                    case R.id.loggedExerciseNav:
+                        Intent intent1 = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
+                        startActivity(intent1);
+                       // openExerciseLogging();
                         break;
                     case R.id.settings:
                         Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
-                    case R.id.mycart:
-                        Toast.makeText(MainActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    case R.id.profileMenu:
+                            Intent profile = new Intent(MainActivity.this, Profile.class);
+                            startActivity(profile);
+                        break;
                     default:
                         return true;
                 }
@@ -88,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         Intent intent = new Intent(MainActivity.this, ExerciseLoggingActivity.class);
 
                         startActivity(intent);
+                        break;
+                    case R.id.profileMenu:
+                        Intent profile = new Intent(MainActivity.this, Profile.class);
+                        startActivity(profile);
                 }
                 return false;
             }

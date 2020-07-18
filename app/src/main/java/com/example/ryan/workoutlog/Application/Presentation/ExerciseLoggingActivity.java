@@ -60,6 +60,10 @@ public class ExerciseLoggingActivity extends Activity implements Serializable {
                     case R.id.home_nav:
                         Intent intent = new Intent(ExerciseLoggingActivity.this, MainActivity.class);
                         startActivity(intent);
+                        break;
+                    case R.id.profileMenu:
+                        Intent profile = new Intent(ExerciseLoggingActivity.this, Profile.class);
+                        startActivity(profile);
                 }
                 return false;
             }
