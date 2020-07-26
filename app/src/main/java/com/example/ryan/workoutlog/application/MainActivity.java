@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         dl.addDrawerListener(t);
       t.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
        NavigationView nv = (NavigationView)findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

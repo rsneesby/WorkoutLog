@@ -11,7 +11,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:tabSelectedTextColor="@color/cardview_light_background"
+        >
+    <com.google.android.material.tabs.TabItem
+        android:id="@+id/tab1"
+        android:text="Tab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    />
+    <com.google.android.material.tabs.TabItem
+        android:id="@+id/tab2"
+        android:text="Tab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <com.google.android.material.tabs.TabItem
+        android:id="@+id/tab3"
+        android:text="Tab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_nav"
         android:layout_width="match_parent"
@@ -28,5 +71,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation">
 
+
+
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

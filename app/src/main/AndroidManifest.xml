@@ -35,6 +35,10 @@
             android:name=".application.presentation.editResistanceExercise"
             android:label="@string/title_activity_edit_exercise"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".application.presentation.Profile"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

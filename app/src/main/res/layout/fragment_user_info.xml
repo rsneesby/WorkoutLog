@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:androidx="http://schemas.android.com/apk/res-auto"
+    tools:context=".application.presentation.userInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx:TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_goals"
+        android:layout_gravity="center_vertical|center_horizontal"/>
+
+    <TextView
+        android:id="@+id/squatMAx"
+        android:layout_width="78dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center_vertical"
+
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+</FrameLayout>

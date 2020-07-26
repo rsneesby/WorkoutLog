@@ -1,15 +1,21 @@
 package com.example.ryan.workoutlog.application.presentation;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.ryan.workoutlog.application.MainActivity;
 import com.example.ryan.workoutlog.R;
+import com.example.ryan.workoutlog.application.MainActivity;
+import com.example.ryan.workoutlog.application.logic.PageAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class Profile extends AppCompatActivity {
 /*
@@ -23,8 +29,64 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        BottomNavigationView mMainNav =(BottomNavigationView) findViewById(R.id.main_nav);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+       // toolbar.setTitle(getResources().getString(R.string.app_name));
+        final TabLayout tabLayout = findViewById(R.id.tablayout);
+        TabItem tabChats = findViewById(R.id.tab1);
+        TabItem tabStatus = findViewById(R.id.tab2);
+        TabItem tabCalls = findViewById(R.id.tab3);
+        final ViewPager viewPager = findViewById(R.id.viewPager);
+        PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        final BottomNavigationView mMainNav =(BottomNavigationView) findViewById(R.id.main_nav);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                        @Override
+            public void onTabUnselected(TabLayout.Tab tab){
 
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab){
+
+            }
+                                               @Override
+                                               public void onTabSelected(TabLayout.Tab tab) {
+                                                   viewPager.setCurrentItem(tab.getPosition());
+                                                   if (tab.getPosition() == 1) {
+                                                       tabLayout.setBackgroundColor(ContextCompat.getColor(Profile.this,
+                                                               R.color.colorAccent));
+                                                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                                           getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,
+                                                                   R.color.colorAccent));
+                                                       }
+                                                   } else if (tab.getPosition() == 2) {
+                                                       tabLayout.setBackgroundColor(ContextCompat.getColor(Profile.this,
+                                                               android.R.color.darker_gray));
+                                                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                                           getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,
+                                                                   android.R.color.darker_gray));
+                                                       }
+                                                   } else {
+                                                       tabLayout.setBackgroundColor(ContextCompat.getColor(Profile.this,
+                                                               R.color.colorPrimary));
+                                                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                                           getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,
+                                                                   R.color.colorPrimaryDark));
+                                                       }
+                                                   }
+
+                                               }
+                                           });
+           /* @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }*/
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
