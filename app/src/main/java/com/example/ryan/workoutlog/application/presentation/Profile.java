@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.example.ryan.workoutlog.R;
 import com.example.ryan.workoutlog.application.MainActivity;
 import com.example.ryan.workoutlog.application.logic.PageAdapter;
+import com.example.ryan.workoutlog.application.persistance.LoggedExercisePersistanceStub;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +26,7 @@ public class Profile extends AppCompatActivity {
 * goals/prs, graph/fillable bar to indicate progress towards goal, could maybe implement a 1rm calculator if user wants to use rep maxes to track
 * recent activity, show workouts for previous day/week (option to toggle) or graph with recent weeks/longer?
 * */
-
+    LoggedExercisePersistanceStub exercisePersistanceStub = new LoggedExercisePersistanceStub();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);

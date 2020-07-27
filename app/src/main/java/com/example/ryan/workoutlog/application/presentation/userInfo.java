@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ryan.workoutlog.R;
+import com.example.ryan.workoutlog.application.persistance.LoggedExercisePersistanceStub;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,7 +17,8 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class userInfo extends Fragment {
-    TextView userMaxSquat;
+
+    LoggedExercisePersistanceStub loggedExercisePersistanceStub = new LoggedExercisePersistanceStub();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -56,15 +58,23 @@ public class userInfo extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
        // getActivity().setContentView(R.layout.fragment_user_info);
-    userMaxSquat =  (TextView)getActivity().findViewById(R.id.squatMAx);
+
         //TODO find way to make this point to proper textView
-        //userMaxSquat.setText("325");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_info, container, false);
+        super.onCreateView(inflater,container,savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_user_info,container,false);
+        TextView userMaxSquat = view.findViewById(R.id.squatMAx);
+        userMaxSquat.setText("Max Squat "+Double.toString(loggedExercisePersistanceStub.getMax("Squats")));
+        TextView userMaxBench = view.findViewById(R.id.benchMax);
+        userMaxBench.setText("Max Squat "+Double.toString(loggedExercisePersistanceStub.getMax("Bench")));
+        TextView userMaxDeadlift = view.findViewById(R.id.deadliftMax);
+        userMaxDeadlift.setText("Max Squat "+Double.toString(loggedExercisePersistanceStub.getMax("Deadlift")));
+        return view;
     }
 }

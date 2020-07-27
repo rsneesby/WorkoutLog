@@ -38,7 +38,7 @@ public class LoggedExercisePersistanceStub implements Serializable {
 
         Exercises.add(new ResistanceExercise(0,
                 1,
-                "Squats",
+                "Bench",
                 "Learning to Squat",
                 300,
                 10,3));
@@ -50,7 +50,7 @@ public class LoggedExercisePersistanceStub implements Serializable {
                 20,3));
         Exercises.add(new ResistanceExercise(2,
                 2,
-                "Squats",
+                "Deadlift",
                 "Learning to Squat",
                 100,
                 5,3));
@@ -99,4 +99,19 @@ public class LoggedExercisePersistanceStub implements Serializable {
 
     }
 
+    public double getMax(String name){
+        double max = 0;
+
+        for (int i = 0; i <Exercises.size() ; i++) {
+            System.out.println(Exercises.get(i).getExerciseName());
+            if(Exercises.get(i).getExerciseName().equals(name)){
+
+                if(((ResistanceExercise) Exercises.get(i)).getWeight() > max){
+                    max = ((ResistanceExercise) Exercises.get(i)).getWeight();
+
+                }
+            }
+        }
+        return max;
+    }
 }
